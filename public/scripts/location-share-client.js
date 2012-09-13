@@ -1,3 +1,5 @@
+var map;
+
 var socket = io.connect('http://localhost');
 socket.on('news', function(data) {
 	// alert(data);
@@ -6,6 +8,51 @@ socket.on('news', function(data) {
 		my : 'data'
 	});
 });
+
+var setTrackers = function() {
+	console.log(connectedTrackers);
+	for(var trackerId in connectedTrackers) {
+		var tracker = connectedTrackers[trackerId];
+		console.log(tracker);
+		var location = tracker.location;
+		var myLatlng = new google.maps.LatLng(location.latitude,location.longitude);
+		console.log(myLatlng);
+		var marker = new google.maps.Marker({
+	        position: myLatlng,
+	        map: map,
+	        title: 'Hello World!'
+	    });
+		console.log(map);
+		tracker.marker = marker;
+	}
+};
+
+
+socket.on('connected-trackers', function(trackers) {
+	//console.log(trackers);
+	connectedTrackers = trackers;
+	setTrackers();
+	//console.log('connected-trackers ' + JSON.stringify(trackers));
+});
+
+socket.on('tracker-connected', function(id) {
+	// alert(data);
+	console.log('tracker connected ' + id);
+	connectedTrackers[id] = new Object();
+});
+
+socket.on('tracker-disconnected', function(id) {
+	// alert(data);
+	console.log('tracker-disconnected ' + id);
+	connectedTrackers[id].marker.setMap(null);
+	connectedTrackers[id] = undefined;
+});
+
+socket.on('location-update', function(id, location) {
+	connectedTrackers[id].location = location;
+	
+});
+
 
 
 var purple = [ {
@@ -40,7 +87,7 @@ var purple = [ {
 	} ]
 } ];
 
-var map;
+
 function initialize() {
 
 	// Create a new StyledMapType object, passing it the array of styles,
@@ -58,13 +105,13 @@ function initialize() {
 			mapTypeIds : [ google.maps.MapTypeId.ROADMAP, 'map_style' ]
 		}
 	};
-	var map = new google.maps.Map(document.getElementById('map_canvas'),
+	map = new google.maps.Map(document.getElementById('map_canvas'),
 			mapOptions);
 
 	//Associate the styled map with the MapTypeId and set it to display.
 	map.mapTypes.set('map_style', styledMap);
 	map.setMapTypeId('map_style');
-
+	
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
