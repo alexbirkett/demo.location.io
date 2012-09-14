@@ -13,20 +13,21 @@ var setTrackers = function() {
 	console.log(connectedTrackers);
 	for(var trackerId in connectedTrackers) {
 		var tracker = connectedTrackers[trackerId];
-		console.log(tracker);
-		var location = tracker.location;
-		var myLatlng = new google.maps.LatLng(location.latitude,location.longitude);
-		console.log(myLatlng);
-		var marker = new google.maps.Marker({
-	        position: myLatlng,
-	        map: map,
-	        title: 'Hello World!'
-	    });
-		console.log(map);
-		tracker.marker = marker;
+		updateTrackerPin(tracker);
 	}
 };
 
+function updateTrackerPin(tracker) {
+	var location = tracker.location;
+	var myLatlng = new google.maps.LatLng(location.latitude,location.longitude);
+
+	if (!tracker.marker) 
+		tracker.marker = new google.maps.Marker({
+	        map: map,
+	        title: 'Hello World!'
+	    });
+	tracker.marker.setPosition(myLatlng);
+	}
 
 socket.on('connected-trackers', function(trackers) {
 	//console.log(trackers);
@@ -49,8 +50,9 @@ socket.on('tracker-disconnected', function(id) {
 });
 
 socket.on('location-update', function(id, location) {
-	connectedTrackers[id].location = location;
-	
+	var tracker = connectedTrackers[id];
+	tracker.location = location;
+	updateTrackerPin(tracker);
 });
 
 
