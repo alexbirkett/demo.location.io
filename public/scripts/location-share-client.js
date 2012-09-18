@@ -10,6 +10,26 @@ var setTrackers = function() {
 	}
 };
 
+var LocationModel = function(timestamp, latitude, longitude) {
+    this.timestamp = ko.observable(timestamp);
+    this.latitude = ko.observable(latitude);
+    this.longitude = ko.observable(longitude);
+};
+
+var locationModel = new LocationModel(1, 2, 3);
+
+$(function() {
+	ko.applyBindings(locationModel);
+});
+
+
+function updateView(tracker) {
+	console.log("update view " + tracker.location.timestamp);
+	locationModel.longitude(tracker.location.longitude);
+	locationModel.latitude(tracker.location.latitude);
+	locationModel.timestamp(tracker.location.timestamp);
+}
+
 function updateTrackerPin(tracker) {
 	var location = tracker.location;
 	var myLatlng = new google.maps.LatLng(location.latitude,location.longitude);
@@ -35,7 +55,8 @@ function updateTrackerPin(tracker) {
 	infowindow.setContent(domNode);
 	
 	google.maps.event.addListener(tracker.marker, 'click', function() {
-		  infowindow.open(map,tracker.marker);
+			updateView(tracker);
+			infowindow.open(map,tracker.marker);
 		});
 
 	}

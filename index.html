@@ -15,12 +15,25 @@
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="/scripts/jquery-1.8.1.js"></script>
     <script src="/scripts/jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="/scripts/knockout-2.1.0.debug.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 	<script src="/scripts/location-share-client.js"></script>
   </head>
   <body>
+    
     <div id="map_canvas"></div>
-    <div id="info_window"><a id="zoom_in" href="#">zoom in</a>
+    <div id="info_window"><a id="zoom_in" href="#">zoom in</a>    
+    	<table>
+    	<tr>
+    	<td>Time</td><td><span data-bind='text: timestamp'></span></td>
+    	</tr>
+    	<tr>
+    	<td>Latitude</td><td><span data-bind='text: latitude'></span></td>
+    	</tr>
+    	<tr>
+    	<td>Longitude</td><td><span data-bind='text: longitude'></span></td>
+    	</tr>
+    	</table>
     </div>
   </body>
 </html>
