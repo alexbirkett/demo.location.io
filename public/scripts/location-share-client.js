@@ -41,25 +41,23 @@ function updateTrackerPin(tracker) {
 	    });
 	
 
-	var infowindow = new google.maps.InfoWindow();
-	
-	var domNode =  $('#info_window')[0];
-	
-	var zoomIn = $('#zoom_in');
-	
-	zoomIn.click(function() {
-		map.setCenter(myLatlng);
-		map.setZoom(16);
-		});
-	
-	infowindow.setContent(domNode);
 	
 	google.maps.event.addListener(tracker.marker, 'click', function() {
-			updateView(tracker);
-			infowindow.open(map,tracker.marker);
-		});
 
+		var infowindow = new google.maps.InfoWindow({
+		    content: $('#info_window')[0]
+		});	
+		
+		$('#zoom_in').click(function() {
+			map.setCenter(myLatlng);
+			map.setZoom(16);
+			});
+		
+		updateView(tracker);
+		infowindow.open(map,tracker.marker);
+		});
 	}
+	
 	tracker.marker.setPosition(myLatlng);
 	}
 
