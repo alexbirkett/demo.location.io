@@ -1,5 +1,5 @@
 var TrackerProtocolHandler = require('../TrackerProtocolAdapter/tracker-protocol-adapter.js');
-var HashMap = require('../hashmap/hashmap').HashMap;
+var HashMap = require('hashmap').HashMap;
 
 module.exports = trackerEventRouter = function(io) {
 
@@ -40,7 +40,7 @@ module.exports = trackerEventRouter = function(io) {
 		conenctedTrackers[id] = undefined;
 		trackerHandlers.remove(id);
 		io.sockets.emit('tracker-disconnected', id);
-		console.log('connected connections ' + trackerHandlers.count());
+	//	console.log('connected connections ' + trackerHandlers.count());
 	});
 
 	trackerProtocolHandler.on("location-update", function(id, location) {
