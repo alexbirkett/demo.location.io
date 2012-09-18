@@ -1,6 +1,6 @@
 var map;
 
-var socket = io.connect('http://localhost');
+var socket = io.connect('http://locationshare.org');
 socket.on('news', function(data) {
 	// alert(data);
 	// console.log(data);
