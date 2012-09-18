@@ -33,17 +33,5 @@ app.use('/scripts', express.static(__dirname + '/public/scripts'));
 app.use('/css', express.static(__dirname + '/public/css'));
 app.use('/images', express.static(__dirname + '/public/images'));
 
-/*io.sockets.on('connection', function(socket) {
-	
-	io.sockets.emit('this', { will: 'be received by everyone'});
-
-	socket.emit('news', {
-		hello : 'world'
-	});
-	socket.on('my other event', function(data) {
-		console.log(data);
-	});
-});*/
-
 var trackerEventRouter = new TrackerEventRouter(io);
 

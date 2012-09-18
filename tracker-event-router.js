@@ -7,19 +7,9 @@ module.exports = trackerEventRouter = function(io) {
 	var trackerHandlers = new HashMap();
 	
 	io.sockets.on('connection', function(socket) {
-
-		io.sockets.emit('this', {
-			will : 'be received by everyone'
-		});
-
-		socket.emit('news', {
-			hello : 'world'
-		});
 		
 		socket.emit('connected-trackers', conenctedTrackers);
-		socket.on('my other event', function(data) {
-			console.log(data);
-		});
+		
 	});
 
 	var trackerProtocolHandler = new TrackerProtocolHandler();

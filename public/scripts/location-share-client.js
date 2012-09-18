@@ -1,13 +1,6 @@
 var map;
 
 var socket = io.connect('http://locationshare.org');
-socket.on('news', function(data) {
-	// alert(data);
-	// console.log(data);
-	socket.emit('my other event', {
-		my : 'data'
-	});
-});
 
 var setTrackers = function() {
 	console.log(connectedTrackers);
