@@ -30,7 +30,8 @@ app.get('/', function(req, res) {
 });
 
 app.use('/scripts', express.static(__dirname + '/public/scripts'));
-
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/images', express.static(__dirname + '/public/images'));
 
 /*io.sockets.on('connection', function(socket) {
 	
