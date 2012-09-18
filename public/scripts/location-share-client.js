@@ -30,6 +30,13 @@ function updateView(tracker) {
 	locationModel.timestamp(tracker.location.timestamp);
 }
 
+var infowindow;
+$(function() {
+	infowindow = new google.maps.InfoWindow({
+	    content: $('#info_window')[0]
+	});	
+});
+
 function updateTrackerPin(tracker) {
 	var location = tracker.location;
 	var myLatlng = new google.maps.LatLng(location.latitude,location.longitude);
@@ -44,9 +51,7 @@ function updateTrackerPin(tracker) {
 	
 	google.maps.event.addListener(tracker.marker, 'click', function() {
 
-		var infowindow = new google.maps.InfoWindow({
-		    content: $('#info_window')[0]
-		});	
+		
 		
 		$('#zoom_in').click(function() {
 			map.setCenter(myLatlng);
