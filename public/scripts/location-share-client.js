@@ -82,12 +82,7 @@ var purple = [ {
 	stylers : [ {
 		hue : '#ffff00'
 	} ]
-}, {
-	featureType : 'road.local',
-	stylers : [ {
-		visibility : 'off'
-	} ]
-} ];
+}];
 
 
 function initialize() {
