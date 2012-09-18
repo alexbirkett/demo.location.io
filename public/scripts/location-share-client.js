@@ -14,19 +14,37 @@ function updateTrackerPin(tracker) {
 	var location = tracker.location;
 	var myLatlng = new google.maps.LatLng(location.latitude,location.longitude);
 
-	if (!tracker.marker) 
+	if (!tracker.marker) {
 		tracker.marker = new google.maps.Marker({
 	        map: map,
 	        title: 'Hello World!'
 	    });
+	
+
+	var infowindow = new google.maps.InfoWindow();
+	
+	var domNode =  $('#info_window')[0];
+	
+	var zoomIn = $('#zoom_in');
+	
+	zoomIn.click(function() {
+		map.setCenter(myLatlng);
+		map.setZoom(16);
+		});
+	
+	infowindow.setContent(domNode);
+	
+	google.maps.event.addListener(tracker.marker, 'click', function() {
+		  infowindow.open(map,tracker.marker);
+		});
+
+	}
 	tracker.marker.setPosition(myLatlng);
 	}
 
 socket.on('connected-trackers', function(trackers) {
-	//console.log(trackers);
 	connectedTrackers = trackers;
 	setTrackers();
-	//console.log('connected-trackers ' + JSON.stringify(trackers));
 });
 
 socket.on('tracker-connected', function(id) {
