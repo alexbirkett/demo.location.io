@@ -6,6 +6,9 @@
     "dependencies": {
         "hashmap": "0.9.x",
         "socket.io": "0.9.x",
-        "express": "3.0.x"
+        "express": "3.0.x",
+        "socketstream": "0.3.x",
+        "ss-stylus": "0.1.x",
+        "ss-hogan": "0.1.x"
     }
 }
