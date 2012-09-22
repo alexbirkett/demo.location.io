@@ -7,7 +7,12 @@ var http = require('http'),
 ss.client.define('main', {
   view: 'app.html',
   css:  ['libs/reset.css', 'app.styl'],
-  code: ['libs/jquery.min.js', 'app'],
+  code: ['libs/jquery-1.8.1.js',
+         'libs/jquery-ui-1.8.23.custom.min.js',
+         'libs/knockout-2.1.0.debug.js',
+         'libs/googlemaps.js', 
+         'app'
+        ],
   tmpl: '*'
 });
 
@@ -31,3 +36,10 @@ server.listen(3000);
 
 // Start SocketStream
 ss.start(server);
+
+
+
+/*setInterval(function() {
+	ss.api.publish.all('newMessage', "test message"); 	
+}, 1000);*/
+

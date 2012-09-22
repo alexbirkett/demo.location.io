@@ -1,24 +1,63 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8"/>
+    <title>Location Share</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map_canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
     <SocketStream/>
-    <title>Welcome</title>
   </head>
   <body>
-    <div id="content">
-      <a href="https://github.com/socketstream/socketstream">
-        <img src="/images/logo.png" alt="SocketStream Logo" width="160" height="160">
-      </a>
-      <h1>Welcome to your new realtime app!</h1>
-
-      <!-- QUICK CHAT DEMO-->
-      <form id="demo" onsubmit="return false">
-        <h3>Quick Chat Demo</h3>
-        <h5>Open this page in multiple tabs or browsers and type a message below</h5>
-        <div id="chatlog"></div>
-        <input id="myMessage" type="text" autocomplete="off">
-      </form>
+    
+    <div id="map_canvas"></div>
+    <div id="info_window"><a id="zoom_in" href="#">zoom in</a>    
+    	<table>
+    	<tr>
+    	<td>GPS Available</td><td data-bind='text: available'></td>
+    	</tr>
+    	<tr>
+    	<td>Time</td><td data-bind='text: timestamp'></td>
+    	</tr>
+    	<tr>
+    	<td>Latitude</td><td data-bind='text: latitude'></td>
+    	</tr>
+    	<tr>
+    	<td>Longitude</td><td data-bind='text: longitude'></td>
+    	</tr>
+    	<tr>
+    	<td>Speed</td><td data-bind='text: speed'></td>
+    	</tr>
+    	<tr>
+    	<td>Battery life</td><td data-bind='text: batteryLife'></td>
+    	</tr>
+    	<tr>
+    	<td>GSM signal</td><td data-bind='text: gsmSignal'></td>
+    	</tr>
+    	
+    	<tr>
+    	<td>Cell ID</td><td data-bind='text: cellId'></td>
+    	</tr>
+    	
+    	<tr>
+    	<td>Country Code</td><td data-bind='text: countryCode'></td>
+    	</tr>
+    	
+    	<tr>
+    	<td>Location Area Code</td><td data-bind='text: locationAreaCode'></td>
+    	</tr>
+    	
+    	<tr>
+    	<td>Network Code</td><td data-bind='text: networkCode'></td>
+    	</tr>
+    	
+    	</table>
     </div>
   </body>
 </html>
