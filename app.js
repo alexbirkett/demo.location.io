@@ -1,5 +1,18 @@
 // My SocketStream 0.3 app
 
+
+function getPortParameter() {
+	
+	var args = process.argv.slice(2);
+	if (args.length < 1) {
+		console.log("usage  <port>");
+		process.exit(1);
+	}
+	
+	return args[0];
+}
+
+
 var http = require('http'),
     ss = require('socketstream');
 
@@ -32,7 +45,14 @@ if (ss.env === 'production') ss.client.packAssets();
 
 // Start web server
 var server = http.Server(ss.http.middleware);
-server.listen(3000);
+try {
+	server.listen(getPortParameter(), "0.0.0.0", function() {
+		process.setuid("www-data");
+	});
+} catch (err) {
+	console.error("Error: [%s] Call: [%s]", err.message, err.syscall);
+	process.exit(1);
+}
 
 // Start SocketStream
 ss.start(server);
