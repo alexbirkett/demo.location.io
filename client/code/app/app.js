@@ -1,5 +1,6 @@
 var map;
 
+var updateView = require('/location_view_model').updateView;
 
 ss.rpc('tracker.getConnectedTrackers', null, function(trackers) {
 	console.log(trackers);
@@ -15,42 +16,7 @@ var setTrackers = function() {
 	}
 };
 
-var LocationModel = function() {
-    this.timestamp = ko.observable("");
-    this.latitude = ko.observable("");
-    this.longitude = ko.observable("");
-    this.available = ko.observable(false);
-    this.speed = ko.observable(false);
-    this.batteryLife = ko.observable(0);
-    this.gsmSignal = ko.observable(0);
-    this.cellId = ko.observable(0);
-    this.countryCode = ko.observable(0);
-    this.locationAreaCode = ko.observable(0);
-    this.networkCode = ko.observable(0);
-};
 
-var locationModel = new LocationModel();
-
-$(function() {
-	ko.applyBindings(locationModel);
-});
-
-
-function updateView(tracker) {
-	console.log("update view " + tracker.location.timestamp);
-	locationModel.longitude(tracker.location.longitude);
-	locationModel.latitude(tracker.location.latitude);
-	locationModel.timestamp(new Date(tracker.location.timestamp));
-	locationModel.available(tracker.location.available);
-	locationModel.speed(tracker.location.speed);
-	locationModel.gsmSignal(tracker.location.status.gsmSignal);
-	locationModel.batteryLife(tracker.location.status.batteryLife);
-	locationModel.cellId(tracker.location.network.cellId);
-	locationModel.countryCode(tracker.location.network.countryCode);
-	locationModel.locationAreaCode(tracker.location.network.locationAreaCode);
-	locationModel.networkCode(tracker.location.network.networkCode);
-	    
-}
 
 var infowindow;
 $(function() {
@@ -95,8 +61,8 @@ ss.event.on('connected-trackers', function(trackers) {
 
 ss.event.on('tracker-connected', function(tracker) {
 	// alert(data);
-	console.log('tracker connected ' + id);
-	connectedTrackers[id.id] = tracker;
+	console.log('tracker connected ' + tracker.id);
+	connectedTrackers[tracker.id] = tracker;
 });
 
 ss.event.on('tracker-disconnected', function(id) {
