@@ -93,10 +93,10 @@ ss.event.on('connected-trackers', function(trackers) {
 	setTrackers();
 });
 
-ss.event.on('tracker-connected', function(id) {
+ss.event.on('tracker-connected', function(tracker) {
 	// alert(data);
 	console.log('tracker connected ' + id);
-	connectedTrackers[id] = new Object();
+	connectedTrackers[id.id] = tracker;
 });
 
 ss.event.on('tracker-disconnected', function(id) {

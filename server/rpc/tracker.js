@@ -12,11 +12,11 @@ trackerProtocolHandler.on("message", function(message) {
 	//console.log(message);
 });
 
-trackerProtocolHandler.on("tracker-connected", function(id, handler) {
-	conenctedTrackers[id] = new Object();
-	trackerHandlers.set(id, handler);
-	ss.publish.all('tracker-connected', id);
-	console.log('new connection ' + id);
+trackerProtocolHandler.on("tracker-connected", function(tracker, handler) {
+	conenctedTrackers[tracker.id] = tracker;
+	trackerHandlers.set(tracker.id, handler);
+	ss.publish.all('tracker-connected', tracker);
+	console.log('new connection ' + tracker.id);
 });
 
 trackerProtocolHandler.on("tracker-disconnected", function(id) {
