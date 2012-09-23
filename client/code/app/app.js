@@ -32,7 +32,7 @@ function updateTrackerPin(tracker) {
 	if (!tracker.marker) {
 		tracker.marker = new google.maps.Marker({
 	        map: map,
-	        title: 'Hello World!'
+	        title: tracker.id
 	    });
 	
 
