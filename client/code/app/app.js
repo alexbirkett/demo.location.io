@@ -112,42 +112,12 @@ ss.event.on('location-update', function(id, location) {
 	updateTrackerPin(tracker);
 });
 
-
-
-var purple = [ {
-	featureType : 'landscape',
-	stylers : [ {
-		hue : '#00dd00'
-	} ]
-}, {
-	featureType : 'road',
-	stylers : [ {
-		hue : '#dd0000'
-	} ]
-}, {
-	featureType : 'water',
-	stylers : [ {
-		hue : '#000040'
-	} ]
-}, {
-	featureType : 'poi.park',
-	stylers : [ {
-		visibility : 'off'
-	} ]
-}, {
-	featureType : 'road.arterial',
-	stylers : [ {
-		hue : '#ffff00'
-	} ]
-}];
-
-
 function initialize() {
 
 	console.log('map init');
 	// Create a new StyledMapType object, passing it the array of styles,
 	// as well as the name to be displayed on the map type control.
-	var styledMap = new google.maps.StyledMapType(purple, {
+	var styledMap = new google.maps.StyledMapType(require('/map_style.js'), {
 		name : "Styled Map"
 	});
 
