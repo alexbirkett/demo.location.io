@@ -83,7 +83,10 @@ function initialize() {
 	console.log('map init');
 	// Create a new StyledMapType object, passing it the array of styles,
 	// as well as the name to be displayed on the map type control.
-	var styledMap = new google.maps.StyledMapType(require('/map_style.js'), {
+	
+	var style = require('/map_style').style;
+	console.log(style);
+	var styledMap = new google.maps.StyledMapType(style, {
 		name : "Styled Map"
 	});
 

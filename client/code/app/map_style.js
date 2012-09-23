@@ -1,4 +1,4 @@
-exports = [ {
+exports.style = [ {
 	featureType : 'landscape',
 	stylers : [ {
 		hue : '#00dd00'
