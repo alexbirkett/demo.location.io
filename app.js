@@ -22,7 +22,6 @@ ss.client.define('main', {
   css:  ['libs/reset.css', 'app.styl'],
   code: ['libs/jquery-1.8.1.js',
          'libs/jquery-ui-1.8.23.custom.min.js',
-         'libs/knockout-2.1.0.debug.js',
          'libs/googlemaps.js', 
          'app'
         ],

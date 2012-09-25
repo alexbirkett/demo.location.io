@@ -1,6 +1,5 @@
 
 var map;
-var updateView = require('/location_view_model').updateView;
 
 exports.initialize = function() {
 
