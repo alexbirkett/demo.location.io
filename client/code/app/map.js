@@ -29,9 +29,46 @@ exports.initialize = function() {
 	map.setMapTypeId('map_style');
 
 };
+
+
+var showInfoWindow = function(tracker, pinLocation) {
+
+	var html = ss.tmpl['chat-info'].render({
+		longitude : tracker.location.longitude,
+		latitude : tracker.location.latitude,
+		timestamp : new Date(tracker.location.timestamp),
+		available : tracker.location.available,
+		speed : tracker.location.speed,
+		gsmSignal : tracker.location.status.gsmSignal,
+		batteryLife : tracker.location.status.batteryLife,
+		cellId : tracker.location.network.cellId,
+		countryCode : tracker.location.network.countryCode,
+		locationAreaCode : tracker.location.network.locationAreaCode,
+		networkCode : tracker.location.network.networkCode,
+	});
+
+	var node = $(html);
+	console.log(node);
+
+	var infowindow = new google.maps.InfoWindow({
+		content : node[0]
+	});
+
+	infowindow.open(map, tracker.marker);
+
+	var element = node.find('#zoom_in');
+	console.log(element);
+
+	element.click(function() {
+		map.setCenter(pinLocation);
+		map.setZoom(16);
+	});
+
+}; 
+
 exports.updateTrackerPin = function(tracker) {
 	var location = tracker.location;
-	var myLatlng = new google.maps.LatLng(location.latitude, location.longitude);
+	var pinLocation = new google.maps.LatLng(location.latitude, location.longitude);
 
 	if (!tracker.marker) {
 		tracker.marker = new google.maps.Marker({
@@ -40,41 +77,10 @@ exports.updateTrackerPin = function(tracker) {
 		});
 
 		google.maps.event.addListener(tracker.marker, 'click', function() {
-
-			var html = ss.tmpl['chat-info'].render({
-			 	longitude:tracker.location.longitude,
-				latitude:tracker.location.latitude,
-				timestamp: new Date(tracker.location.timestamp),
-				available: tracker.location.available,
-				speed: tracker.location.speed,
-				gsmSignal: tracker.location.status.gsmSignal,
-				batteryLife: tracker.location.status.batteryLife,
-				cellId: tracker.location.network.cellId,
-				countryCode: tracker.location.network.countryCode,
-				locationAreaCode: tracker.location.network.locationAreaCode,
-				networkCode: tracker.location.network.networkCode,
-			});
-			
-			var node = $(html);
-			console.log(node);
-			
-			var infowindow = new google.maps.InfoWindow({
-			    content:node[0]
-			});	
-			
-			infowindow.open(map, tracker.marker);
-	
-			var element = node.find('#zoom_in');
-			console.log(element);
-			
-			element.click(function() {
-				map.setCenter(myLatlng);
-				map.setZoom(16);
-			});
-			
+			showInfoWindow(tracker, pinLocation);
 		});
 	}
 
-	tracker.marker.setPosition(myLatlng);
+	tracker.marker.setPosition(pinLocation);
 };
 
