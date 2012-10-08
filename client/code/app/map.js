@@ -79,6 +79,12 @@ exports.updateTrackerPin = function(tracker) {
 		google.maps.event.addListener(tracker.marker, 'click', function() {
 			showInfoWindow(tracker, pinLocation);
 		});
+		
+		google.maps.event.addListener(tracker.marker, 'dblclick', function() {
+			map.setCenter(pinLocation);
+			map.setZoom(16);
+		});
+		
 	}
 
 	tracker.marker.setPosition(pinLocation);
