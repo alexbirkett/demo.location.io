@@ -8,6 +8,8 @@
         "socket.io": "0.9.x",
         "socketstream": "0.3.x",
         "ss-stylus": "0.1.x",
-        "ss-hogan": "0.1.x"
+        "ss-hogan": "0.1.x",
+        "ss-angular": "0.x.x",
+        "ss-less": "0.1.x"   
     }
 }

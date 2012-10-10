@@ -22,7 +22,9 @@ ss.client.define('main', {
   css:  ['libs/reset.css', 'app.styl'],
   code: ['libs/jquery-1.8.1.js',
          'libs/jquery-ui-1.8.23.custom.min.js',
-         'libs/googlemaps.js', 
+         'libs/googlemaps.js',
+         'libs/angular.min.js', 
+         'libs/bootstrap.js', 
          'app'
         ],
   tmpl: '*'
@@ -37,7 +39,11 @@ ss.http.route('/', function(req, res){
 ss.client.formatters.add(require('ss-stylus'));
 
 // Use server-side compiled Hogan (Mustache) templates. Others engines available
-ss.client.templateEngine.use(require('ss-hogan'));
+//ss.client.templateEngine.use(require('ss-hogan'));
+ss.client.formatters.add(require('ss-less'));
+ss.client.templateEngine.use('angular');
+
+ss.responders.add(require('ss-angular'));
 
 // Minimize and pack assets if you type: SS_ENV=production node app.js
 if (ss.env === 'production') ss.client.packAssets();

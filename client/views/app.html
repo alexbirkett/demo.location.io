@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html ng-app="exampleApp">
   <head>
     <title>Location Share</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,8 +15,11 @@
     <SocketStream/>
   </head>
   <body>
+   
+   	<div id="map_canvas"></div>
+    <div ng-view></div> 
     
-    <div id="map_canvas"></div>
+   
   
   </body>
 </html>
