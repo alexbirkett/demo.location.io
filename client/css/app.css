@@ -1,0 +1,21 @@
+.popUpDiv{
+	width:400px;
+	height:400px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-200px 0 0 -200px;
+	z-index: 9002;
+			background: #FFFFFF;
+				border: 5px solid #000;
+}
+
+html, body, #map_canvas {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+ #map_canvas {
+
+ }

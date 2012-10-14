@@ -5,19 +5,15 @@
     <title>Location Share</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <style>
-      html, body, #map_canvas {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-      }
-    </style>
     <SocketStream/>
   </head>
   <body>
+
+    <div class="popUpDiv" ng-view></div> 
+   	<div id="map_canvas"></div> 
+
    
-   	<div id="map_canvas"></div>
-    <div ng-view></div> 
+
     
    
   
