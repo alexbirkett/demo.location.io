@@ -7,7 +7,7 @@ angular.module('exampleApp', ['ssAngular'])
       when('/app', {controller:'SSCtrl', templateUrl:'app.html'}).
       when('/test', {controller:'SSTest', templateUrl:'test.html'}).
       otherwise({redirectTo:'/app'});
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
   })
   .controller('SSCtrl',function($scope,$location,pubsub,rpc,model,auth) {
     $scope.messages = []
