@@ -5,7 +5,7 @@ angular.module('exampleApp', ['ssAngular'])
     $routeProvider.
       when('/login', {controller:'AuthCtrl', templateUrl:'login.html'}).
       when('/app', {controller:'SSCtrl', templateUrl:'app.html'}).
-      when('/test', {controller:'SSTest', templateUrl:'test.html'}).
+      when('/properties', {controller:'SSProperties', templateUrl:'properties.html'}).
       otherwise({redirectTo:'/app'});
     $locationProvider.html5Mode(false);
   })
@@ -45,8 +45,10 @@ angular.module('exampleApp', ['ssAngular'])
       });
     }
   })
-  .controller('SSTest',function($scope, $location, $log, auth) {
-  
+  .controller('SSProperties',function($scope,$location,pubsub,rpc,model,auth) {
+  	$scope.capabilities = require('/capabilities').capabilities;
+  	console.log($scope.capabilities);
+  	
   })
   .controller('AuthCtrl',function($scope, $location, $log, auth) {
     $scope.processAuth = function() {

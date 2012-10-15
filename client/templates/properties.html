@@ -1,0 +1,21 @@
+<ul>
+	<div ng-repeat="property in capabilities.properties">
+		{{property.name}}
+		<form ng-show="property.writable" ng-submit="setProperty()">
+			<div ng-show="property.passwordRequired">
+				Password
+				<input  type="text"  ng-model="property.value"  size="30">
+			</div>
+			<div ng-repeat="parameter in property.parameters">
+				{{parameter.name}}
+				{{password}}
+				<input type="text" ng-model="parameter.value"  size="30">
+				{{pv}}
+				<input class="btn-primary" type="submit" value="set">
+			</div>
+
+		</form>
+
+	</div>
+</ul>
+
