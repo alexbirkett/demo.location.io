@@ -5,7 +5,11 @@ ss.rpc('tracker.getConnectedTrackers', null, function(trackers) {
 	console.log(trackers);
 	connectedTrackers = trackers;
 	setTrackers();
-});
+	angular.element(document).ready(function() {
+		angular.bootstrap(document, ['locationShare']);
+	});
+}); 
+
 
 var setTrackers = function() {
 	console.log(connectedTrackers);
