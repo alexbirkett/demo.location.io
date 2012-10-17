@@ -1,4 +1,4 @@
-angular.module('exampleApp', ['ssAngular'])
+angular.module('locationShare', ['ssAngular'])
   .config(function(authProvider,$routeProvider,$locationProvider) {
     authProvider.authServiceModule('example');
     authProvider.loginPath('/login');
