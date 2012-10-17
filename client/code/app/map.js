@@ -77,7 +77,8 @@ exports.updateTrackerPin = function(tracker) {
 		});
 
 		google.maps.event.addListener(tracker.marker, 'click', function() {
-			showInfoWindow(tracker, pinLocation);
+			//showInfoWindow(tracker, pinLocation);
+			window.location.href = "/#/info/" + tracker.id;
 		});
 		
 		google.maps.event.addListener(tracker.marker, 'dblclick', function() {
