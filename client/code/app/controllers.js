@@ -5,7 +5,8 @@ angular.module('exampleApp', ['ssAngular'])
     $routeProvider.
       when('/login', {controller:'AuthCtrl', templateUrl:'login.html'}).
       when('/app', {controller:'SSCtrl', templateUrl:'app.html'}).
-      when('/properties/:tracker/:id', {controller:'SSProperties', templateUrl:'properties.html'}).
+      when('/properties/:tracker', {controller:'SSProperties', templateUrl:'properties.html'}).
+      when('/property/:tracker/:property', {controller:'SSProperty', templateUrl:'property.html'}).
       when('/info/:tracker', {controller:'SSInfo', templateUrl:'info.html'}).
       otherwise({redirectTo:'/app'});
     $locationProvider.html5Mode(false);
@@ -48,8 +49,28 @@ angular.module('exampleApp', ['ssAngular'])
   })
   .controller('SSProperties',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
   	$scope.capabilities = require('/capabilities').capabilities;
-  	console.log('test');
+  	$scope.tracker = connectedTrackers[$routeParams.tracker];
+  	//$scope.capabilities = $scope.tracker.capabilities;
+  	//console.log('capabilities');
+  	console.log($scope.capabilities);
+  	
+  })
+  .controller('SSProperty',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
+  	//$scope.capabilities = require('/capabilities').capabilities;
+  	console.log('property');
   	console.log($routeParams);
+  	$scope.property =  require('/capabilities').capabilities.properties[$routeParams.property];
+  	$scope.propertyName = $routeParams.property;
+  	$scope.tracker = connectedTrackers[$routeParams.tracker];
+    $scope.value = {};
+  	console.log('SSProperty');
+  	console.log($scope.$propertyName);
+  	
+  	$scope.set = function() {
+  		console.log($scope.password);
+  		console.log($scope);
+  	};
+  	//console.log($scope.capabilities);
   	
   })
   .controller('SSInfo',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
@@ -58,7 +79,7 @@ angular.module('exampleApp', ['ssAngular'])
   	console.log('SSInfo');
   	console.log($routeParams.tracker);
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
-  	  	console.log($scope.tracker);
+  	console.log($scope.tracker);
   	
   })
   .controller('AuthCtrl',function($scope, $location, $log, auth) {

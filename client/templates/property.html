@@ -1,0 +1,27 @@
+<div ng-controller="SSProperty">
+	{{propertyName}}
+	<form ng-show="property.writable" ng-submit="setProperty()">
+		<div ng-show="property.passwordRequired">
+			Password
+			<input  type="text"  ng-model="value.password"  size="30"></input>
+		</div>
+		<div ng-repeat="parameter in property.parameters">
+			
+			{{parameter.name}}
+			<span ng-switch on="parameter.type" >
+        		<input ng-switch-when="boolean" type="checkbox" ng-model="value[parameter.name]"></input>
+        		<input ng-switch-when="timePeriod" type="time" ng-model="value[parameter.name]"  size="30"></input>
+        		<input ng-switch-when="speed" ng-model="value[parameter.name]"  size="30"></input>
+        		<input ng-switch-when="telephoneNumber" type="tel" ng-model="value[parameter.name]"  size="30"></input>
+        		<input ng-switch-when="longitude" ng-model="value[parameter.name]"  size="30"></input>
+        		<input ng-switch-when="latitude" ng-model="value[parameter.name]"  size="30"></input>
+        		<input ng-switch-when="timeZone" ng-model="value[parameter.name]"  size="30"></input>
+        		<input ng-switch-when="percentage" ng-model="value[parameter.name]"  size="30"></input>
+        		<input ng-switch-when="password" ng-model="value[parameter.name]"  size="30"></input>
+        		
+      		</span>
+		</div>
+		<input class="btn-primary" type="submit" value="set" ng-click="set()"></input>
+	</form>
+
+</div>
