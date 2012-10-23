@@ -1,48 +1,50 @@
+<div ui-map-info-window="myInfoWindow">
+	<a id="zoom_in" href="#">zoom in</a>
+	<table>
+		<tr>
+			<td>GPS Available</td><td>{{tracker.location.available}}</td>
+		</tr>
+		<tr>
+			<td>Time</td><td>{{tracker.location.timestamp}}</td>
+		</tr>
+		<tr>
+			<td>Latitude</td><td>{{tracker.location.latitude}}</td>
+		</tr>
+		<tr>
+			<td>Longitude</td><td>{{tracker.location.longitude}}</td>
+		</tr>
+		<tr>
+			<td>Speed</td><td>{{tracker.location.speed}}</td>
+		</tr>
+		<tr>
+			<td>Battery life</td><td>{{tracker.location.status.batteryLife}}</td>
+		</tr>
+		<tr>
+			<td>GSM signal</td><td>{{tracker.location.status.gsmSignal}}</td>
+		</tr>
 
-   <div id="info_window" ng-controller="SSInfo">
-  	<a id="zoom_in" href="#">zoom in</a>    
-    	<table>
-    	<tr>
-    	<td>GPS Available</td><td>{{tracker.location.available}}</td>
-    	</tr>
-    	<tr>
-    	<td>Time</td><td>{{tracker.location.timestamp}}</td>
-    	</tr>
-    	<tr>
-    	<td>Latitude</td><td>{{tracker.location.latitude}}</td>
-    	</tr>
-    	<tr>
-    	<td>Longitude</td><td>{{tracker.location.longitude}}</td>
-    	</tr>
-    	<tr>
-    	<td>Speed</td><td>{{tracker.location.speed}}</td>
-    	</tr>
-    	<tr>
-    	<td>Battery life</td><td>{{tracker.location.status.batteryLife}}</td>
-    	</tr>
-    	<tr>
-    	<td>GSM signal</td><td>{{tracker.location.status.gsmSignal}}</td>
-    	</tr>
-    	
-    	<tr>
-    	<td>Cell ID</td><td>{{tracker.location.network.cellId}}</td>
-    	</tr>
-    	
-    	<tr>
-    	<td>Country Code</td><td>{{tracker.location.network.countryCode}}</td>
-    	</tr>
-    	
-    	<tr>
-    	<td>Location Area Code</td><td>{{tracker.location.network.locationAreaCode}}</td>
-    	</tr>
-    	
-    	<tr>
-    	<td>Network Code</td><td>{{tracker.location.network.networkCode}}</td>
-    	</tr>
-    	
-    	</table>
-    	
-    	<a href="#/properties/{{tracker.id}}">Set properties</a>
+		<tr>
+			<td>Cell ID</td><td>{{tracker.location.network.cellId}}</td>
+		</tr>
 
+		<tr>
+			<td>Country Code</td><td>{{tracker.location.network.countryCode}}</td>
+		</tr>
 
-    </div>
+		<tr>
+			<td>Location Area Code</td><td>{{tracker.location.network.locationAreaCode}}</td>
+		</tr>
+
+		<tr>
+			<td>Network Code</td><td>{{tracker.location.network.networkCode}}</td>
+		</tr>
+
+	</table>
+
+	<a href="#/properties/{{tracker.id}}">Set properties</a>
+<ul>
+	<li ng-repeat="property in properties">
+		{{property.name}}
+	</li>
+</ul>
+</div>

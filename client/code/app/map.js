@@ -1,6 +1,4 @@
 
-var map;
-
 exports.initialize = function() {
 
 	console.log('map init');
