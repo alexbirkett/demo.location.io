@@ -1,5 +1,5 @@
 <div ui-map-info-window="myInfoWindow">
-	<a id="zoom_in" href="#">zoom in</a>
+	
 	<table>
 		<tr>
 			<td>GPS Available</td><td>{{tracker.location.available}}</td>
@@ -40,11 +40,9 @@
 		</tr>
 
 	</table>
-
-	<a href="#/properties/{{tracker.id}}">Set properties</a>
+	<a class="btn btn-primary" href="#/properties/{{tracker.id}}">Modify settings</a>
+	<a class="btn btn-primary" id="zoom_in" href="#">zoom in</a>
 <ul>
-	<li ng-repeat="property in properties">
-		{{property.name}}
-	</li>
+	
 </ul>
 </div>

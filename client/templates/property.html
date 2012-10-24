@@ -1,35 +1,48 @@
-<div class="popUpDiv">
-	{{propertyName}}
+<div class="modal-backdrop fade in"></div>
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<form ng-show="property.writable" ng-submit="setProperty()">
-		<div ng-show="property.passwordRequired">
-			Password
-			<input  type="text"  ng-model="value.password"  size="30">
-			</input>
+		<div class="modal-header">
+			 <a type="button" class="close" data-dismiss="modal" aria-hidden="true" href="#">×</a>
+			<h3 id="myModalLabel">{{propertyName}}</h3>
 		</div>
-		<div ng-repeat="parameter in property.parameters">
-
-			{{parameter.name}}
-			<span ng-switch on="parameter.type" >
-				<input ng-switch-when="boolean" type="checkbox" ng-model="value[parameter.name]">
-				</input>
-				<input ng-switch-when="timePeriod" type="time" ng-model="value[parameter.name]"  size="30">
-				</input>
-				<input ng-switch-when="speed" ng-model="value[parameter.name]"  size="30">
-				</input>
-				<input ng-switch-when="telephoneNumber" type="tel" ng-model="value[parameter.name]"  size="30">
-				</input>
-				<input ng-switch-when="longitude" ng-model="value[parameter.name]"  size="30">
-				</input>
-				<input ng-switch-when="latitude" ng-model="value[parameter.name]"  size="30">
-				</input>
-				<input ng-switch-when="timeZone" ng-model="value[parameter.name]"  size="30">
-				</input>
-				<input ng-switch-when="percentage" ng-model="value[parameter.name]"  size="30">
-				</input>
-				<input ng-switch-when="password" ng-model="value[parameter.name]"  size="30">
-				</input> </span>
+		<div class="modal-body">
+			<table>
+			<tr ng-show="property.passwordRequired">
+				<td>Password</td>
+				<td><input type="text" ng-model="value.password" size="30"></input></td>
+			</tr>
+			<tr ng-repeat="parameter in property.parameters">
+				<td>{{parameter.name}}</td>
+				<td ng-switch on="parameter.type" >
+					<input ng-switch-when="boolean" type="checkbox" ng-model="value[parameter.name]">
+					</input>
+					<input ng-switch-when="timePeriod" type="time" ng-model="value[parameter.name]"  size="30">
+					</input>
+					<input ng-switch-when="speed" type="text" ng-model="value[parameter.name]"  size="30">
+					</input>
+					<input ng-switch-when="telephoneNumber" type="tel" ng-model="value[parameter.name]"  size="30">
+					</input>
+					<input ng-switch-when="longitude" type="text" ng-model="value[parameter.name]"  size="30">
+					</input>
+					<input ng-switch-when="latitude" type="text" ng-model="value[parameter.name]"  size="30">
+					</input>
+					<input ng-switch-when="timeZone" type="text" ng-model="value[parameter.name]"  size="30">
+					</input>
+					<input ng-switch-when="percentage" type="text" ng-model="value[parameter.name]"  size="30">
+					</input>
+					<input ng-switch-when="password" type="text" ng-model="value[parameter.name]"  size="30">
+					</input></td>
+			</tr>
+			</table>
 		</div>
-		<input class="btn-primary" type="submit" value="set" ng-click="set()">
-		</input>
+		<div class="modal-footer">
+			<a  href="#" class="btn" data-dismiss="modal" aria-hidden="true">
+				Close
+			</a>
+			<button class="btn btn-primary" ng-click="set()">
+				Set
+			</button>
+		</div>
 	</form>
 </div>
+
