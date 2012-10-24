@@ -37,12 +37,12 @@ exports.actions = function(req,res,ss) {
       }
     },
     authenticated: function() {
-      if(req.session.userId) {
+      //if(req.session.userId) {
         res(true);
-      }
-      else {
-        res(false);
-      }
+     // }
+     // else {
+     //   res(false);
+     // }
     },
     logout: function() {
       req.session.setUserId(null);
