@@ -19,7 +19,7 @@ var http = require('http'),
 // Define a single-page client called 'main'
 ss.client.define('main', {
   view: 'app.html',
-  css:  ['libs/reset.css', 'app.css', 'libs/angular-ui.css'],
+  css:  ['libs/reset.css', 'app.css', 'libs/angular-ui.css', 'libs/bootstrap.css'],
   code: ['libs/jquery-1.8.1.js',
          'libs/jquery-ui-1.8.23.custom.min.js',
          'libs/googlemaps.js',
