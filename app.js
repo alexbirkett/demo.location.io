@@ -24,8 +24,7 @@ ss.client.define('main', {
          'libs/jquery-ui-1.8.23.custom.min.js',
          'libs/googlemaps.js',
          'libs/angular.min.js', 
-         'libs/bootstrap.js', 
-         'libs/angular-ui.js',
+         'libs/bootstrap.js',
          'app'
         ],
   tmpl: '*'

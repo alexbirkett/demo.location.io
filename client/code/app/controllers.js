@@ -1,14 +1,5 @@
 openPopups = [];
 
-var closePopups = function() {
-	for (var i = 0; i < openPopups.length; i++) {
-		var popup = openPopups[i];
-		console.log(popup);
-		popup.close();
-	}
-	openPopups = [];
-}
-
 angular.module('locationShare', ['ssAngular'])
   .config(function(authProvider,$routeProvider,$locationProvider) {
     authProvider.authServiceModule('example');
@@ -68,27 +59,12 @@ angular.module('locationShare', ['ssAngular'])
   	
   })
   .controller('SSInfo',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
-  	closePopups();
   	//$scope.capabilities = require('/capabilities').capabilities;
   	//console.log('test');
   	console.log('SSInfo');
   	console.log($routeParams.tracker);
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
-  	console.log($scope.tracker);
- 	
-  	setTimeout(function() {
-  		$scope.myInfoWindow.open(map, $scope.tracker.marker);
-  		openPopups.push($scope.myInfoWindow);
-  		
-  		
-  		google.maps.event.addListener($scope.myInfoWindow, 'closeclick', function() {
-			//showInfoWindow(tracker, pinLocation);
-			//window.location.href = "/#";
-		});
-		
-  	},0);
-  	
-  	
+  	console.log($scope.tracker);  	
   })
   .controller('AuthCtrl',function($scope, $location, $log, auth) {
     $scope.processAuth = function() {
