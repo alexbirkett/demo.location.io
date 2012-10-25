@@ -1,6 +1,11 @@
-<div ui-map-info-window="myInfoWindow">
-	
-	<table>
+<div class="modal-backdrop fade in"></div>
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <a type="button" class="close" data-dismiss="modal" aria-hidden="true" href="#">×</a>
+    <h3 id="myModalLabel">{{tracker.id}}</h3>
+  </div>
+  <div class="modal-body">
+    <table>
 		<tr>
 			<td>GPS Available</td><td>{{tracker.location.available}}</td>
 		</tr>
@@ -40,9 +45,9 @@
 		</tr>
 
 	</table>
-	<a class="btn btn-primary" href="#/properties/{{tracker.id}}">Modify settings</a>
-	<a class="btn btn-primary" id="zoom_in" href="#">zoom in</a>
-<ul>
-	
-</ul>
+  </div>
+  <div class="modal-footer">
+  	<a class="btn btn-primary" href="#/properties/{{tracker.id}}">Modify settings</a>
+    <a class="btn" data-dismiss="modal" aria-hidden="true" href="#">Close</a>
+  </div>
 </div>
