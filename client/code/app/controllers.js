@@ -64,7 +64,15 @@ angular.module('locationShare', ['ssAngular'])
   	console.log('SSInfo');
   	console.log($routeParams.tracker);
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
-  	console.log($scope.tracker);  	
+  	console.log($scope.tracker); 
+  	
+  	$scope.zoom = function() {
+  		var location = $scope.tracker.location;
+		var pinLocation = new google.maps.LatLng(location.latitude, location.longitude);
+  		map.setCenter(pinLocation);
+		map.setZoom(16);
+		window.location.href = "/#";
+  	}; 	
   })
   .controller('AuthCtrl',function($scope, $location, $log, auth) {
     $scope.processAuth = function() {
