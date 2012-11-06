@@ -67,6 +67,10 @@ exports.actions = function(req, res, ss) {
 				});
 			}
 			return res('');
+		},
+		getCapabilities : function(protocolName) {
+			var capabilities = require('../../../TrackerProtocolAdapter/protocol/gotop/capabilities.js').capabilities;
+			return res(capabilities);
 		}
 
 	};

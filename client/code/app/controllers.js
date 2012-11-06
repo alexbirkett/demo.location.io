@@ -33,8 +33,9 @@ angular.module('locationShare', ['ssAngular'])
     }
   })
   .controller('SSProperties',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
-  	$scope.capabilities = require('/capabilities').capabilities;
+
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
+  	$scope.capabilities = capabilities[$scope.tracker.protocol];
   	//$scope.capabilities = $scope.tracker.capabilities;
   	//console.log('capabilities');
   	console.log($scope.capabilities);
@@ -42,11 +43,14 @@ angular.module('locationShare', ['ssAngular'])
   })
   .controller('SSProperty',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
   	//$scope.capabilities = require('/capabilities').capabilities;
+  	$scope.tracker = connectedTrackers[$routeParams.tracker];
+  	$scope.capabilities = capabilities[$scope.tracker.protocol];
+  	
   	console.log('property');
   	console.log($routeParams);
-  	$scope.property =  require('/capabilities').capabilities.properties[$routeParams.property];
+  	$scope.property = $scope.capabilities.properties[$routeParams.property];
   	$scope.propertyName = $routeParams.property;
-  	$scope.tracker = connectedTrackers[$routeParams.tracker];
+
     $scope.value = {};
   	console.log('SSProperty');
   	console.log($scope.$propertyName);
