@@ -58,6 +58,15 @@ exports.actions = function(req, res, ss) {
 			console.log('get connected trackers');
 			return res(conenctedTrackers);
 			
+		},
+		command : function(trackerId, command) {
+			var handler = trackerHandlers.get(trackerId);
+			if (handler != undefined) {
+				handler.sendCommand(command, function() {
+					
+				});
+			}
+			return res('');
 		}
 
 	};
