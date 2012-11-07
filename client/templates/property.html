@@ -1,44 +1,37 @@
 <div class="modal-backdrop fade in"></div>
 <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form ng-show="property.writable" ng-submit="setProperty()">
+	<form name="myForm" ng-show="property.writable" ng-submit="setProperty()">
 		<div class="modal-header">
 			 <a type="button" class="close" data-dismiss="modal" aria-hidden="true" href="#">×</a>
 			<h3 id="myModalLabel">{{propertyName}}</h3>
 		</div>
 		<div class="modal-body">
 			<table>
-			<tr ng-show="property.passwordRequired">
-				<td>Password</td>
-				<td><input type="text" ng-model="value.password" size="30"></input></td>
-			</tr>
-			<tr ng-repeat="parameter in property.parameters">
-				<td>{{parameter.name}}</td>
+			<tr ng-repeat="(name, parameter) in property.parameters">
+				<td>{{name}}</td>
 				<td ng-switch on="parameter.type" >
-					<input ng-switch-when="boolean" type="checkbox" ng-model="value[parameter.name]">
+					<input ng-switch-when="boolean" type="checkbox" ng-model="value[name]" ng:pattern="parameter.pattern" >
 					</input>
-					<input ng-switch-when="timePeriod" type="time" ng-model="value[parameter.name]"  size="30">
+					<input ng-switch-when="time" type="time" ng-model="value[name]"  size="30">
 					</input>
-					<input ng-switch-when="speed" type="text" ng-model="value[parameter.name]"  size="30">
+					<input ng-switch-when="text" type="text" ng-model="value[name]"  ng:pattern="propertyValidation(parameter)" size="30">
 					</input>
-					<input ng-switch-when="telephoneNumber" type="tel" ng-model="value[parameter.name]"  size="30">
-					</input>
-					<input ng-switch-when="longitude" type="text" ng-model="value[parameter.name]"  size="30">
-					</input>
-					<input ng-switch-when="latitude" type="text" ng-model="value[parameter.name]"  size="30">
-					</input>
-					<input ng-switch-when="timeZone" type="text" ng-model="value[parameter.name]"  size="30">
-					</input>
-					<input ng-switch-when="percentage" type="text" ng-model="value[parameter.name]"  size="30">
-					</input>
-					<input ng-switch-when="password" type="text" ng-model="value[parameter.name]"  size="30">
-					</input>
-					<input ng-switch-when="index" type="text" ng-model="value[parameter.name]"  size="1">
-					</input>
-					
-					
-					</td>
+					<input ng-switch-when="tel" type="tel" ng-model="value[name]"  size="30">
+					</input>					
+				</td>
 			</tr>
 			</table>
+		Errors in the form:
+			<ul class="errors">
+				<li ng:repeat="(name, widgets) in myForm.error">
+					{{name}}:
+					<ul>
+						<li ng:repeat="w in widgets">
+							{{w.widgetId}}
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 		<div class="modal-footer">
 			<a  href="#" class="btn" data-dismiss="modal" aria-hidden="true">

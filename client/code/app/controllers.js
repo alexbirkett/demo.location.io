@@ -48,7 +48,14 @@ angular.module('locationShare', ['ssAngular'])
   	
   	console.log('property');
   	console.log($routeParams);
-  	$scope.property = $scope.capabilities.properties[$routeParams.property];
+  	$scope.property = $scope.capabilities.commands[$routeParams.property];
+  	console.log($scope.property);
+  	
+  	$scope.propertyValidation = function(property) {
+  		return new RegExp(property.pattern);
+  	};
+  
+  	
   	$scope.propertyName = $routeParams.property;
 
     $scope.value = {};
