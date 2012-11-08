@@ -59,14 +59,15 @@ exports.actions = function(req, res, ss) {
 			return res(conenctedTrackers);
 			
 		},
-		command : function(trackerId, command) {
+		sendCommand : function(trackerId, commandName, parameters) {
 			var handler = trackerHandlers.get(trackerId);
-			if (handler != undefined) {
-				handler.sendCommand(command, function() {
-					
+			if (handler == undefined) {
+				res('invalid tracker ID');
+			} else {
+				handler.sendCommand(commandName, parameters, function(err) {
+					res(err);
 				});
 			}
-			return res('');
 		},
 		getCapabilities : function(protocolName) {
 			var capabilities = require('../../../TrackerProtocolAdapter/protocol/gotop/capabilities.js').capabilities;

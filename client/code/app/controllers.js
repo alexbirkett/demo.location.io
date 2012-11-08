@@ -62,10 +62,24 @@ angular.module('locationShare', ['ssAngular'])
   	console.log('SSProperty');
   	console.log($scope.$propertyName);
   	
-  	$scope.set = function() {
-  		console.log($scope.password);
-  		console.log($scope);
-  	};
+  	
+	$scope.set = function() {
+		console.log($scope.password);
+		console.log($scope);
+		$errorCode = null;
+		ss.rpc('tracker.sendCommand', $scope.tracker.id, $scope.propertyName, $scope.value, function(error) {
+			$scope.$apply(function() {
+				console.log(error);
+				$scope.errorCode = error;
+				console.log("command sent");
+				if (error == null) {
+					window.location.href = "/#";
+				}
+			});
+
+		});
+	}; 
+
   	//console.log($scope.capabilities);
   	
   })
