@@ -1,50 +1,44 @@
 // Server-side Code
-var TrackerProtocolHandler = require('../../../TrackerProtocolAdapter/tracker-protocol-adapter.js');
+var LocationIo = require('../../../TrackerProtocolAdapter/location-io.js');
 var HashMap = require('hashmap').HashMap;
 var ss = require('socketstream').api;
 
-var conenctedTrackers = new Object();
-var trackerHandlers = new HashMap();
+var locationIo = new LocationIo();
 
-var trackerProtocolHandler = new TrackerProtocolHandler();
+var trackers = {};
 
-trackerProtocolHandler.on("message", function(message) {
+locationIo.on("message", function(message) {
 	//console.log(message);
 });
 
-trackerProtocolHandler.on("tracker-connected", function(tracker, handler) {
-	conenctedTrackers[tracker.id] = tracker;
-	trackerHandlers.set(tracker.id, handler);
+locationIo.on("tracker-connected", function(id, protocol) {
+
+	console.log('new connection ' + id);
+	var tracker = {};
+	tracker.protocol = protocol;
+	tracker.id = id;
+	trackers[id] = tracker;
 	ss.publish.all('tracker-connected', tracker);
-	console.log('new connection ' + tracker.id);
 });
 
-trackerProtocolHandler.on("tracker-disconnected", function(id) {
+locationIo.on("tracker-disconnected", function(id) {
 	console.log('connection closed ' + id);
-	conenctedTrackers[id] = undefined;
-	trackerHandlers.remove(id);
 	ss.publish.all('tracker-disconnected', id);
+	trackers[id] = undefined;
 	//	console.log('connected connections ' + trackerHandlers.count());
 });
 
-trackerProtocolHandler.on("location-update", function(id, location) {
-	console.log('location-update ' + id + ' location ' + location);
-	var tracker = conenctedTrackers[id];
-	ss.publish.all('location-update', id, location);
-	tracker.location = location;
+locationIo.on("message", function(id, message) {
+	console.log('message from ' + id);
+	console.log(message);
+	
+	if (message.location != undefined) {
+		trackers[id].location = message.location;
+	}
+	
+	ss.publish.all('message', id, message);
+	
 });
-
-trackerProtocolHandler.on("alarm", function(id, location) {
-	console.log('alarm ' + id + ' location ' + location);
-	ss.publish.all('alarm', id, location);
-});
-
-trackerProtocolHandler.on("heart-beat", function(id) {
-	console.log('heart beat ' + id);
-	ss.publish.all('heart-beat', id);
-});
-
-trackerProtocolHandler.createServer(1337);
 
 // Define actions which can be called from the client using ss.rpc('demo.ACTIONNAME', param1, param2...)
 exports.actions = function(req, res, ss) {
@@ -56,18 +50,13 @@ exports.actions = function(req, res, ss) {
 
 		getConnectedTrackers : function(message) {
 			console.log('get connected trackers');
-			return res(conenctedTrackers);
+			return res(trackers);
 			
 		},
 		sendCommand : function(trackerId, commandName, parameters) {
-			var handler = trackerHandlers.get(trackerId);
-			if (handler == undefined) {
-				res('invalid tracker ID');
-			} else {
-				handler.sendCommand(commandName, parameters, function(err) {
-					res(err);
-				});
-			}
+			locationIo.sendCommand(trackerId, commandName, parameters, function(err) {
+				res(err);
+			});
 		},
 		getCapabilities : function(protocolName) {
 			var capabilities = require('../../../TrackerProtocolAdapter/protocol/gotop/capabilities.js').capabilities;
@@ -77,3 +66,5 @@ exports.actions = function(req, res, ss) {
 	};
 
 };
+
+locationIo.createServer(1337);

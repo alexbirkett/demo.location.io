@@ -43,14 +43,6 @@ var getCapabilities = function() {
 	}
 };
 
-
-
-
-ss.event.on('connected-trackers', function(trackers) {
-	connectedTrackers = trackers;
-	setTrackers();
-});
-
 ss.event.on('tracker-connected', function(tracker) {
 	// alert(data);
 	console.log('tracker connected ' + tracker.id);
@@ -65,10 +57,13 @@ ss.event.on('tracker-disconnected', function(id) {
 	connectedTrackers[id] = undefined;
 });
 
-ss.event.on('location-update', function(id, location) {
+ss.event.on('message', function(id, message) {
 	var tracker = connectedTrackers[id];
-	tracker.location = location;
-	map.updateTrackerPin(tracker);
+	if (message.location != undefined) {
+		tracker.location = message.location;
+		map.updateTrackerPin(tracker);	
+	}
+
 });
 
 map.initialize();
