@@ -1,7 +1,7 @@
 {
-    "name": "LocationShare",
+    "name": "example.location.io",
     "version": "0.0.1",
-    "description": "Safley share the location of people and things with apps and the web",
+    "description": "",
     "engine": "node >= 0.8.3",
     "dependencies": {
         "hashmap": "0.9.x",
