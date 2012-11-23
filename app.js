@@ -51,9 +51,7 @@ if (ss.env === 'production') ss.client.packAssets();
 // Start web server
 var server = http.Server(ss.http.middleware);
 try {
-	server.listen(getPortParameter(), "0.0.0.0", function() {
-		process.setuid("www-data");
-	});
+	server.listen(getPortParameter(), "0.0.0.0");
 } catch (err) {
 	console.error("Error: [%s] Call: [%s]", err.message, err.syscall);
 	process.exit(1);
