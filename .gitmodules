@@ -1,3 +1,4 @@
 [submodule "node_modules/location.io"]
 	path = node_modules/location.io
-	url = git@github.com:alexbirkett/location.io.git
+	url = git://github.com/alexbirkett/location.io.git
+
