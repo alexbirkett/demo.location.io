@@ -32,7 +32,9 @@ var getCapabilitiesIfRequired = function(protocol) {
 var updateTrackerPins = function() {
 	for(var trackerId in connectedTrackers) {
 		var tracker = connectedTrackers[trackerId];
-		map.updateTrackerPin(tracker);
+		if (tracker.location != undefined) {
+			map.updateTrackerPin(tracker);		
+		}
 	}
 };
 
