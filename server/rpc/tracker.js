@@ -1,5 +1,5 @@
 // Server-side Code
-var LocationIo = require('../../../TrackerProtocolAdapter/location-io.js');
+var LocationIo = require('location.io');
 var HashMap = require('hashmap').HashMap;
 var ss = require('socketstream').api;
 
