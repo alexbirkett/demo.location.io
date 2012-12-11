@@ -69,9 +69,30 @@ exports.updateTrackerPin = function(tracker) {
 	var pinLocation = new google.maps.LatLng(location.latitude, location.longitude);
 
 	if (!tracker.marker) {
+		
+		
+		// Define Marker properties
+
+    var pinImage = new google.maps.MarkerImage('images/pin.png',
+        // This marker is 129 pixels wide by 42 pixels tall.
+        new google.maps.Size(46, 45),
+        // The origin for this image is 0,0.
+        new google.maps.Point(0,0),
+        // The anchor for this image is the base of the flagpole at 18,42.
+        new google.maps.Point(23, 45)
+    );
+
+
+    var pinShadow = new google.maps.MarkerImage("images/shadow.png",
+        new google.maps.Size(55, 51),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(23, 55));
+
 		tracker.marker = new google.maps.Marker({
 			map : map,
-			title : tracker.id
+			title : tracker.id,
+			icon: pinImage
+           // shadow: pinShadow
 		});
 
 		google.maps.event.addListener(tracker.marker, 'click', function() {
