@@ -75,18 +75,18 @@ exports.updateTrackerPin = function(tracker) {
 
     var pinImage = new google.maps.MarkerImage('images/pin.png',
         // This marker is 129 pixels wide by 42 pixels tall.
-        new google.maps.Size(94, 97),
+        new google.maps.Size(42, 43),
         // The origin for this image is 0,0.
         new google.maps.Point(0,0),
-        // The anchor for this image is the base of the flagpole at 18,42.
-        new google.maps.Point(47, 97)
+        // The anchor for this image is the base of the flagpole.
+        new google.maps.Point(21, 43)
     );
 
 
     var pinShadow = new google.maps.MarkerImage("images/shadow.png",
         new google.maps.Size(30, 10),
         new google.maps.Point(0, 0),
-        new google.maps.Point(15, 10));
+        new google.maps.Point(15, 15));
 
 		tracker.marker = new google.maps.Marker({
 			map : map,
