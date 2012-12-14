@@ -84,9 +84,9 @@ exports.updateTrackerPin = function(tracker) {
 
 
     var pinShadow = new google.maps.MarkerImage("images/shadow.png",
-        new google.maps.Size(30, 10),
+        new google.maps.Size(42, 8),
         new google.maps.Point(0, 0),
-        new google.maps.Point(15, 15));
+        new google.maps.Point(15, 6));
 
 		tracker.marker = new google.maps.Marker({
 			map : map,
