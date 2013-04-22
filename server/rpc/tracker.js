@@ -60,7 +60,6 @@ exports.actions = function(req, res, ss) {
 		},
 		getCapabilities : function(protocolName) {
 			var capabilities = locationIo.getCapabilities(protocolName);
-			console.log(capabilities);
 			return res(capabilities);
 		}
 
