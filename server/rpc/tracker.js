@@ -32,7 +32,7 @@ locationIo.on("message", function(id, message) {
 	console.log('message from ' + id);
 	console.log(message);
 	
-	if (message.location != undefined) {
+	if (message.location != undefined && trackers[id] != undefined) {
 		trackers[id].location = message.location;
 	}
 	
