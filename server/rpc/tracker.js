@@ -54,12 +54,12 @@ exports.actions = function(req, res, ss) {
 			
 		},
 		sendCommand : function(trackerId, commandName, parameters) {
-			locationIo.sendCommand(trackerId, commandName, parameters, function(err) {
+			locationIo.sendMessage(trackerId, commandName, parameters, function(err) {
 				res(err);
 			});
 		},
 		getCapabilities : function(protocolName) {
-			var capabilities = locationIo.getCapabilities(protocolName);
+			var capabilities = locationIo.getApi(protocolName);
 			return res(capabilities);
 		}
 
