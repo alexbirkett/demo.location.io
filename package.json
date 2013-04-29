@@ -10,6 +10,7 @@
         "ss-stylus": "0.1.x",
         "ss-hogan": "0.1.x",
         "ss-angular": "0.x.x",
-        "ss-less": "0.1.x"   
+        "ss-less": "0.1.x",
+        "location.io": "git://github.com/alexbirkett/location.io.git#master"  
     }
 }
