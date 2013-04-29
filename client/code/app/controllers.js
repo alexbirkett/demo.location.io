@@ -98,14 +98,6 @@ angular.module('locationShare', ['ssAngular'])
 		map.setZoom(16);
 		window.location.href = "/#";
   	};
-  	
-  	
-	$scope.update = function() {
-
-		ss.rpc('tracker.command', $scope.tracker.id, "update", function(status) {
-			window.location.href = "/#";
-		});
-	}; 
 
   })
   .controller('AuthCtrl',function($scope, $location, $log, auth) {
