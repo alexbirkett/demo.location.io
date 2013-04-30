@@ -15,7 +15,7 @@ exports.initialize = function() {
 	// to the map type control.
 	var mapOptions = {
 		zoom : 2,
-		center : new google.maps.LatLng(0, 0),
+		center : new google.maps.LatLng(45, -45),
 		mapTypeControlOptions : {
 			mapTypeIds : [ google.maps.MapTypeId.ROADMAP, 'map_style' ]
 		}
