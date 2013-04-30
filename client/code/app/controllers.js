@@ -62,12 +62,19 @@ angular.module('locationShare', ['ssAngular'])
   	console.log('SSProperty');
   	console.log($scope.$propertyName);
   	
+  	$scope.cancel = function() {
+  	    $scope.loading = false;
+  	    $scope.showWarning = true;
+  	}
   	
 	$scope.set = function() {
 		console.log($scope.password);
 		console.log($scope);
-		$errorCode = null;
+		$scope.errorCode = undefined;
+		$scope.loading = true;
+		$scope.showWarning = false;
 		ss.rpc('tracker.sendCommand', $scope.tracker.id, $scope.propertyName, $scope.value, function(error) {
+			$scope.loading = false;
 			$scope.$apply(function() {
 				console.log(error);
 				$scope.errorCode = error;
