@@ -96,6 +96,7 @@ angular.module('locationShare', ['ssAngular'])
   	console.log('SSInfo');
   	console.log($routeParams.tracker);
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
+  	$scope.time = new Date($scope.tracker.location.timestamp).toLocaleString();
   	console.log($scope.tracker); 
   	
   	$scope.zoom = function() {
