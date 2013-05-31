@@ -13,3 +13,7 @@ Location.IO Demo does not currenly support
 - User login (or any privacy at all)
 - A database to store the location and trip history of trackers
 
+
+Live Demo
+===============
+[http://demo.location.io](http://demo.location.io)
