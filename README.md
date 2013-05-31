@@ -17,3 +17,23 @@ Location.IO Demo does not currenly support
 Live Demo
 ===============
 [http://demo.location.io](http://demo.location.io)
+
+Point trackers to 176.58.107.144 port 1337
+
+
+Install
+=======
+
+To install the most recent release from npm, run:
+
+    npm install demo.location.io
+    
+Usage
+=====
+
+From inside demo.location.io directory
+    
+    node node app.js [http port]
+    
+The server listens to for connections from trackers on port 1337.
+    
