@@ -11,6 +11,10 @@
         "ss-hogan": "0.1.x",
         "ss-angular": "0.x.x",
         "ss-less": "0.1.x",
-        "location.io": "git://github.com/alexbirkett/location.io.git#master"  
+        "location.io": "git://github.com/alexbirkett/location.io.git#master"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/alexbirkett/demo.location.io.git"
     }
 }
