@@ -16,6 +16,8 @@ function getPortParameter() {
 var http = require('http'),
     ss = require('socketstream');
 
+ss.api.root = ss.root = __dirname;
+
 // Define a single-page client called 'main'
 ss.client.define('main', {
   view: 'app.html',
