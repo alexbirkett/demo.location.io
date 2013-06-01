@@ -26,14 +26,12 @@ Install
 
 To install the most recent release from npm, run:
 
-    npm install demo.location.io
+     npm install -g demo.location.io
     
 Usage
 =====
-
-From inside demo.location.io directory
     
-    node node app.js [http port]
+    demo-location-io [http port]
     
 The server listens to for connections from trackers on port 1337.
 
