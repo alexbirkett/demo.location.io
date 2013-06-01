@@ -4,6 +4,7 @@
     "description": "A simple Location.IO demo web app using Node.js, SocketStream, angular.js and Google Maps",
     "engine": "node >= 0.10.5",
     "author": "Alex Birkett <alex@birkett.co.uk>",
+    "keywords": ["gps", "tracker", "location.io", "webapp", "angularjs", "socketstream"],
     "contributors": [
         {
             "name": "Alex Birkett",
