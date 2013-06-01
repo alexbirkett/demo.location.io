@@ -26,5 +26,6 @@
         "url": "https://github.com/alexbirkett/demo.location.io.git"
     },
     "main": "index",
-    "bin" : { "demo-location-io" : "index.js" }
+    "bin" : { "demo-location-io" : "index.js" },
+    "preferGlobal": true
 }
