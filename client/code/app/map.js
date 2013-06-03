@@ -1,12 +1,10 @@
 
 exports.initialize = function() {
 
-	console.log('map init');
 	// Create a new StyledMapType object, passing it the array of styles,
 	// as well as the name to be displayed on the map type control.
 
 	var style = require('/map_style').style;
-	console.log(style);
 	var styledMap = new google.maps.StyledMapType(style, {
 		name : "Styled Map"
 	});
@@ -46,7 +44,6 @@ var showInfoWindow = function(tracker, pinLocation) {
 	});
 
 	var node = $(html);
-	console.log(node);
 
 	var infowindow = new google.maps.InfoWindow({
 		content : node[0]
@@ -55,7 +52,6 @@ var showInfoWindow = function(tracker, pinLocation) {
 	infowindow.open(map, tracker.marker);
 
 	var element = node.find('#zoom_in');
-	console.log(element);
 
 	element.click(function() {
 		map.setCenter(pinLocation);

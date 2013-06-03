@@ -36,21 +36,14 @@ angular.module('locationShare', ['ssAngular'])
 
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
   	$scope.capabilities = capabilities[$scope.tracker.protocol];
-  	//$scope.capabilities = $scope.tracker.capabilities;
-  	//console.log('capabilities');
-  	console.log($scope.capabilities);
-  	
   })
   .controller('SSProperty',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
   	//$scope.capabilities = require('/capabilities').capabilities;
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
   	$scope.capabilities = capabilities[$scope.tracker.protocol];
   	
-  	console.log('property');
-  	console.log($routeParams);
   	$scope.property = $scope.capabilities[$routeParams.property];
-  	console.log($scope.property);
-  	
+
   	$scope.propertyValidation = function(property) {
   		return new RegExp(property.pattern);
   	};
@@ -59,46 +52,34 @@ angular.module('locationShare', ['ssAngular'])
   	$scope.propertyName = $routeParams.property;
 
     $scope.value = {};
-  	console.log('SSProperty');
-  	console.log($scope.$propertyName);
-  	
+
   	$scope.cancel = function() {
   	    $scope.loading = false;
   	    $scope.showWarning = true;
   	}
   	
 	$scope.set = function() {
-		console.log($scope.password);
-		console.log($scope);
 		$scope.errorCode = undefined;
 		$scope.loading = true;
 		$scope.showWarning = false;
 		ss.rpc('tracker.sendCommand', $scope.tracker.id, $scope.propertyName, $scope.value, function(error) {
 			$scope.loading = false;
 			$scope.$apply(function() {
-				console.log(error);
 				$scope.errorCode = error;
-				console.log("command sent");
 				if (error == null) {
 					window.location.href = "/#";
 				}
 			});
 
 		});
-	}; 
-
-  	//console.log($scope.capabilities);
+	};
   	
   })
   .controller('SSInfo',function($scope,$location,pubsub,rpc,model,auth, $routeParams) {
   	//$scope.capabilities = require('/capabilities').capabilities;
-  	//console.log('test');
-  	console.log('SSInfo');
-  	console.log($routeParams.tracker);
   	$scope.tracker = connectedTrackers[$routeParams.tracker];
   	$scope.time = new Date($scope.tracker.location.timestamp).toLocaleString();
-  	console.log($scope.tracker); 
-  	
+
   	$scope.zoom = function() {
   		var location = $scope.tracker.location;
 		var pinLocation = new google.maps.LatLng(location.latitude, location.longitude);
