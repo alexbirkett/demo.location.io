@@ -1,6 +1,6 @@
 {
     "name": "demo.location.io",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A demo web app using SocketStream, AngularJS and Google Maps for Location.IO, a common interface to GPS tracking hardware",
     "engine": "node >= 0.10.5",
     "author": "Alex Birkett <alex@birkett.co.uk>",
