@@ -7,7 +7,8 @@ Location.IO Demo
 
 A simple Location.IO demo web app using Node.js, SocketStream, AngularJS and Google Maps. 
 
-The Location.IO demo allows the location of connected devices to be seen on a map. If a device disconnects it disappears from the map. Messages can be sent to devices capable of receiving them.
+The demo app is indented to demonstrate the functionality of [Location.IO](https://github.com/alexbirkett/location.io). Connected trackers are shown as pins on the map. The example app supports sending commands to trackers. It is real time, the map pins move as the trackers update their locations. If a tracker disconnects it disappears from the map.
+
 
 Location.IO Demo does not currenly support
 - User login (or any privacy at all)
