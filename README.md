@@ -36,6 +36,10 @@ Usage
     
 The server listens to for connections from trackers on port 1337.
 
+More info
+=====
+More info about supported trackers and protocols can be found on the [Location.IO webstie](http://location.io)
+
 License
 =====
 The MIT License (MIT)
