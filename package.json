@@ -1,10 +1,10 @@
 {
     "name": "demo.location.io",
     "version": "0.0.2",
-    "description": "A simple Location.IO demo web app using Node.js, SocketStream, angular.js and Google Maps",
+    "description": "A demo web app using SocketStream, AngularJS and Google Maps for Location.IO, a common interface to GPS tracking hardware",
     "engine": "node >= 0.10.5",
     "author": "Alex Birkett <alex@birkett.co.uk>",
-    "keywords": ["gps", "tracker", "location.io", "webapp", "angularjs", "socketstream"],
+    "keywords": ["gps", "tracker", "location.io", "location", "io", "location-io", "webapp", "angularjs", "socketstream"],
     "contributors": [
         {
             "name": "Alex Birkett",
@@ -27,5 +27,7 @@
     },
     "main": "index",
     "bin" : { "demo-location-io" : "index.js" },
-    "preferGlobal": true
+    "preferGlobal": true,
+    "homepage": "http://location.io",
+    "license" : "MIT"
 }
