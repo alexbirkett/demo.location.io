@@ -23,7 +23,6 @@ ss.client.define('main', {
   view: 'app.html',
   css:  ['libs/reset.css', 'app.css', 'libs/angular-ui.css', 'libs/bootstrap.css', 'libs/bootstrap-responsive.css'],
   code: ['libs/jquery-1.9.1.js',
-         'libs/googlemaps.js',
          'libs/angular.min.js', 
          'libs/bootstrap.js',
          'app'
