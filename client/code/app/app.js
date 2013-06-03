@@ -28,7 +28,7 @@ var getCapabilitiesIfRequired = function(protocol) {
 var updateTrackerPins = function() {
 	for(var trackerId in connectedTrackers) {
 		var tracker = connectedTrackers[trackerId];
-		if (tracker.location != undefined) {
+		if (tracker.location !== undefined) {
 			map.updateTrackerPin(tracker);		
 		}
 	}
@@ -48,12 +48,12 @@ ss.event.on('tracker-connected', function(tracker) {
 
 ss.event.on('tracker-disconnected', function(id) {
 	connectedTrackers[id].marker.setMap(null);
-	connectedTrackers[id] = undefined;
+	delete connectedTrackers[id];
 });
 
 ss.event.on('message', function(id, message) {
 	var tracker = connectedTrackers[id];
-	if (message.location != undefined) {
+	if (message.location !== undefined) {
 		tracker.location = message.location;
 		map.updateTrackerPin(tracker);	
 	}
