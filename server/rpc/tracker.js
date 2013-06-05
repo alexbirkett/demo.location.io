@@ -7,13 +7,9 @@ var locationIo = new LocationIo();
 
 var trackers = {};
 
-locationIo.on("message", function(message) {
-	//console.log(message);
-});
-
 locationIo.on("tracker-connected", function(id, protocol) {
 
-	console.log('new connection ' + id);
+	console.log('new connection ' + id + ' protocol ' + protocol);
 	var tracker = {};
 	tracker.protocol = protocol;
 	tracker.id = id;
@@ -24,18 +20,20 @@ locationIo.on("tracker-connected", function(id, protocol) {
 locationIo.on("tracker-disconnected", function(id) {
 	console.log('connection closed ' + id);
 	ss.publish.all('tracker-disconnected', id);
-	trackers[id] = undefined;
-	//	console.log('connected connections ' + trackerHandlers.count());
+	delete trackers[id];
 });
 
 locationIo.on("message", function(id, message) {
 	console.log('message from ' + id);
-	console.log(message);
-	
-	if (message.location != undefined && trackers[id] != undefined) {
-		trackers[id].location = message.location;
-	}
-	
+    console.log(message);
+    if (trackers[id] === undefined) {
+        console.log('message from unknown id ' + id);
+    } else {
+       if (message.location !== undefined) {
+           trackers[id].location = message.location;
+       }
+    }
+
 	ss.publish.all('message', id, message);
 	
 });
