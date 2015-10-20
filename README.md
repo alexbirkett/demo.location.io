@@ -1,10 +1,14 @@
-<p align="center">
-  <img src="http://location.io/wp-content/themes/responsive-location/images/logo.jpg" alt="Location.IO Logo"/>
-</p>
+
 
 Location.IO Demo
 ================
 
+No longer maintained
+====================
+October 2015. Sadly, I don't have time to maintain this project. If you wish to maintain it, please let me know.
+
+Description
+===========
 A simple Location.IO demo web app using Node.js, SocketStream, AngularJS and Google Maps. 
 
 The demo app is indented to demonstrate the functionality of [Location.IO](https://github.com/alexbirkett/location.io). Connected trackers are shown as pins on the map. The example app supports sending commands to trackers. It is real time, the map pins move as the trackers update their locations. If a tracker disconnects it disappears from the map.
